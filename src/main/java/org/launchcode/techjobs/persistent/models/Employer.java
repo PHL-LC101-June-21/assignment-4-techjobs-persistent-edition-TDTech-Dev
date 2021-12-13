@@ -22,13 +22,15 @@ public class Employer extends AbstractEntity {
     @JoinColumn(name = "employer_id")
     private List<Job> jobs = new ArrayList<>();
 
-      public Employer() {}
+    //no arg constructor
+    public Employer() {}
 
     public Employer(String location) {
         super();
         this.location = location;
     }
 
+    //Getters and setters:
 
     public String getLocation() {
         return location;
