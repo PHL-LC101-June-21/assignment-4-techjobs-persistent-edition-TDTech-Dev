@@ -1,37 +1,45 @@
 package org.launchcode.techjobs.persistent.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
-public class Job{
+public class Job extends AbstractEntity{
+    @ManyToOne
+    private Employer employer;
 
-    @Id
-    @GeneratedValue
-    private int id;
-
-    private String name;
-
-    private String employer;
-    private String skills;
+    @ManyToMany
+    @NotEmpty(message = "Must select at least one skill!")
+    private List<Skill> skills = new ArrayList<> ();
+//    @Id
+//    @GeneratedValue
+//    private int id;
+//
+//    private String name;
+//
+//    private String employer;
+//    private String skills;
 
     public Job() {
     }
 
-    public Job(String anEmployer, String someSkills) {
+    public Job(Employer employer, List<Skill> skills) {
         super();
-        this.employer = anEmployer;
-        this.skills = someSkills;
+        this.employer = employer;
+        this.skills = skills;
     }
 
     // Getters and setters.
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
+//    public String getName() {
+//        return name;
+//    }
+//
+//    public void setName(String name) {
+//        this.name = name;
+//    }
 
     public String getEmployer() {
         return employer;
